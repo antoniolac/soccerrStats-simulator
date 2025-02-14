@@ -1,48 +1,28 @@
-// Definizione dell'interfaccia Giocatore
-interface Giocatore {
-    id: number;
-    nome: string;
-    ruolo: Ruolo;
-    goal: number;
-    assist: number;
-    partiteGiocate: number;
-}
-
-// Enum per il ruolo dei giocatori
-enum Ruolo {
-    Portiere = "Portiere",
-    Difensore = "Difensore",
-    Centrocampista = "Centrocampista",
-    Attaccante = "Attaccante"
-}
-
 // Simulazione dei dati della squadra
-const datiGiocatori: Giocatore[] = [
-    { id: 1, nome: "Gianluigi Donnarumma", ruolo: Ruolo.Portiere, goal: 0, assist: 0, partiteGiocate: 30 },
-    { id: 2, nome: "Giovanni Di Lorenzo", ruolo: Ruolo.Difensore, goal: 1, assist: 3, partiteGiocate: 28 },
-    { id: 3, nome: "Nicolo Barella", ruolo: Ruolo.Centrocampista, goal: 4, assist: 6, partiteGiocate: 29 },
-    { id: 4, nome: "Federico Chiesa", ruolo: Ruolo.Attaccante, goal: 7, assist: 5, partiteGiocate: 25 },
-    { id: 5, nome: "Ciro Immobile", ruolo: Ruolo.Attaccante, goal: 12, assist: 4, partiteGiocate: 27 }
+const datiGiocatori = [
+    { id: 1, nome: "Boris Radunovic", ruolo: "Portiere", goal: 0, assist: 0, partiteGiocate: 30 },
+    { id: 2, nome: "Valerio Di Cesare", ruolo: "Difensore", goal: 1, assist: 3, partiteGiocate: 28 },
+    { id: 3, nome: "Mattia Maita", ruolo: "Centrocampista", goal: 4, assist: 6, partiteGiocate: 29 },
+    { id: 4, nome: "Andrea Favilli", ruolo: "Attaccante", goal: 7, assist: 5, partiteGiocate: 25 },
+    { id: 5, nome: "Nicholas Bonfanti", ruolo: "Attaccante", goal: 12, assist: 4, partiteGiocate: 27 }
 ];
 
 // Simulazione API con delay di 2 secondi
-async function fetchGiocatori(): Promise<Giocatore[]> {
-    return await new Promise(resolve => {
+function fetchGiocatori() {
+    return new Promise(resolve => {
         setTimeout(() => resolve(datiGiocatori), 2000);
     });
 }
 
 // Classe Squadra
 class Squadra {
-    nome: string;
-    giocatori: Giocatore[] = [];
-    stato: string = "Caricamento dati...";
-
-    constructor(nome: string) {
+    constructor(nome) {
         this.nome = nome;
+        this.giocatori = [];
+        this.stato = "Caricamento dati...";
     }
 
-    aggiornaGiocatori(): void {
+    aggiornaGiocatori() {
         this.stato = "Caricamento dati...";
         this.render();
 
@@ -57,7 +37,7 @@ class Squadra {
         });
     }
 
-    private render(): void {
+    render() {
         const statoElemento = document.getElementById("statoRichiesta");
         const tabellaCorpo = document.getElementById("giocatoriTabella");
 
