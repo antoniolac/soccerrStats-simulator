@@ -9,9 +9,9 @@
     <script src="static/ts/index.ts" type="text/typescript"></script>
 </head>
 <body>
-    <h1>Statistiche Squadra Italia</h1>
+    <h1>Statistiche Squadra di Calcio</h1>
     <button id="aggiornaDati">Aggiorna Dati</button>
-    <p id="stato">Caricamento dati...</p>
+    <p id="statoRichiesta">Caricamento dati...</p>
     <table>
         <thead>
             <tr>
@@ -22,7 +22,10 @@
                 <th>Partite Giocate</th>
             </tr>
         </thead>
-        <tbody id="giocatori"></tbody>
+        <tbody id="giocatoriTabella">
+            <!-- I dati verranno inseriti qui -->
+        </tbody>
     </table>
+    <script src="app.js"></script>
 </body>
 </html>
